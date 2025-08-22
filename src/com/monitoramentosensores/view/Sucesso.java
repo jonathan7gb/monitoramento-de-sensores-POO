@@ -8,6 +8,6 @@ public class Sucesso {
     }
 
     public void medicaoCadastradaComSucesso(){
-        System.out.println("\n|| ✅ Medição Cadastrada com Sucesso! \n");
+        System.out.println("|| ✅ Medição Cadastrada com Sucesso! \n");
     }
 }

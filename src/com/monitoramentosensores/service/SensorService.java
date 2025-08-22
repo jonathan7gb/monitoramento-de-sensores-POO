@@ -173,34 +173,36 @@ public class SensorService {
                     saidas.listaVazia();
                 }else if(Lista_de_Medicoes.isEmpty()){
                     saidas.listaVaziaMedicao();
-                }else{
+                }else {
+                    boolean achado = false;
                     int totalMedicoes = 1;
                     System.out.println("");
                     String codigo = cadastro.inputCodigoSensor();
 
-                    for(Medicao medicao : Lista_de_Medicoes){
-                        if(medicao.getCodigoSensor().equalsIgnoreCase(codigo)){
-                            System.out.println("\nHistórico de Medições do Sensor "+ codigo +":\n");
+                    for (Medicao medicao : Lista_de_Medicoes) {
+                        if (medicao.getCodigoSensor().equalsIgnoreCase(codigo)) {
+                            System.out.println("\nHistórico de Medições do Sensor " + codigo + ":\n");
+                            achado = true;
                             break;
                         }
                     }
 
-                    for(Medicao medicao : Lista_de_Medicoes){
-                        if(medicao.getCodigoSensor().equalsIgnoreCase(codigo)){
+                    for (Medicao medicao : Lista_de_Medicoes) {
+                        if (medicao.getCodigoSensor().equalsIgnoreCase(codigo)) {
                             System.out.print("|| " + totalMedicoes + ". ");
                             System.out.print(medicao);
                             totalMedicoes++;
 
-                            for(Sensor sensor : Lista_de_Sensores){
-                                if (sensor instanceof SensorTemperatura sensorTemperatura){
-                                    if(sensorTemperatura.getCodigo().equalsIgnoreCase(medicao.getCodigoSensor())){
-                                        if (medicao.getValor() > 80){
+                            for (Sensor sensor : Lista_de_Sensores) {
+                                if (sensor instanceof SensorTemperatura sensorTemperatura) {
+                                    if (sensorTemperatura.getCodigo().equalsIgnoreCase(medicao.getCodigoSensor())) {
+                                        if (medicao.getValor() > 80) {
                                             System.out.println(" ⚠\uFE0F ALERTA");
                                         }
                                     }
-                                }else if(sensor instanceof SensorVibracao sensorVibracao){
-                                    if (sensorVibracao.getCodigo().equalsIgnoreCase(medicao.getCodigoSensor())){
-                                        if (medicao.getValor() != 60){
+                                } else if (sensor instanceof SensorVibracao sensorVibracao) {
+                                    if (sensorVibracao.getCodigo().equalsIgnoreCase(medicao.getCodigoSensor())) {
+                                        if (medicao.getValor() != 60) {
                                             System.out.println(" ⚠\uFE0F ALERTA");
                                         }
                                     }
@@ -208,9 +210,14 @@ public class SensorService {
                             }
                         }
                     }
-                    System.out.println("\n");
-                }
 
+                    if (achado == false) {
+                        System.out.println("");
+                        saidas.NenhumSensorEncontrado();
+                    }else{
+                        System.out.println("\n");
+                    }
+                }
             } //ENCERRA CASE 5 DA OPÇÃO DO MENU PRINCIPAL
 
             case 6 -> {
