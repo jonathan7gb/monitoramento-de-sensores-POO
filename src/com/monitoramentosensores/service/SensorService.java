@@ -215,7 +215,7 @@ public class SensorService {
                         System.out.println("");
                         saidas.NenhumSensorEncontrado();
                     }else{
-                        System.out.println("\n");
+                        System.out.println("");
                     }
                 }
             } //ENCERRA CASE 5 DA OPÇÃO DO MENU PRINCIPAL
